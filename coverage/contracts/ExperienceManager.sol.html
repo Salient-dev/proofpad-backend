@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/ExperienceManager.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> ExperienceManager.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/25</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+&nbsp;
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "./CompanyManager.sol";
+import "./CategoryManager.sol";
+import "./OpenBadgesProfileManager.sol";
+&nbsp;
+contract ExperienceManager is Ownable {
+    struct Experience {
+        address userAddress;
+        string description;
+        CategoryManager.Category category;
+        CategoryManager.SubCategory subCategory;
+        address companyAddress;
+        bool validated;
+    }
+&nbsp;
+    Experience[] public experiences;
+    mapping(address =&gt; uint[]) private userExperiences;
+    CompanyManager private companyManager;
+    CategoryManager private categoryManager;
+    OpenBadgesProfileManager private profileManager;
+&nbsp;
+    event ExperienceSubmitted(address indexed userAddress, uint experienceId);
+    event ExperienceValidated(address indexed validatorAddress, uint experienceId);
+&nbsp;
+    constructor(address _companyManagerAddress, address _categoryManagerAddress, address _profileManagerAddress) 
+        Ownable(msg.sender)
+    {
+        companyManager = CompanyManager(_companyManagerAddress);
+        categoryManager = CategoryManager(_categoryManagerAddress);
+        profileManager = OpenBadgesProfileManager(_profileManagerAddress);
+    }
+&nbsp;
+&nbsp;
+    /// User submits an experience on the platform
+    /// @param description The description of the experience
+    /// @param category The category of the experience
+    /// @param subCategory The subcategory of the experience
+    /// @param companyAddress The address of the company or organism where the experience was acquired
+<span class="fstat-no" title="function not covered" >    function submitExperience(</span>
+        string memory description,
+        CategoryManager.Category category,
+        CategoryManager.SubCategory subCategory,
+        address companyAddress
+    ) public {
+<span class="cstat-no" title="statement not covered" >        require(companyManager.getCompany(companyAddress).ethAddress != address(0), "Company does not exist")</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        experiences.push(Experience({</span>
+            userAddress: msg.sender,
+            description: description,
+            category: category,
+            subCategory: subCategory,
+            companyAddress: companyAddress,
+            validated: false
+        }));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        uint experienceId = experiences.length - 1;</span>
+<span class="cstat-no" title="statement not covered" >        userExperiences[msg.sender].push(experienceId)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit ExperienceSubmitted(msg.sender, experienceId);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function validateExperience(uint experienceId) public {</span>
+<span class="cstat-no" title="statement not covered" >        Experience storage exp = experiences[experienceId];</span>
+<span class="cstat-no" title="statement not covered" >        require(exp.companyAddress == msg.sender, "Only company can validate experience")</span>;
+<span class="cstat-no" title="statement not covered" >        require(companyManager.getCompany(msg.sender).status == CompanyManager.CompanyStatus.Verified, "Company not verified")</span>;
+&nbsp;
+        exp.validated = true;
+        // Create a badge for the validated experience
+<span class="cstat-no" title="statement not covered" >        profileManager.getOrCreateBadge(</span>
+            exp.description,
+            "Criteria for the badge",
+            "URI for badge class",
+            exp.category,
+            exp.subCategory
+        );
+<span class="cstat-no" title="statement not covered" >        emit ExperienceValidated(msg.sender, experienceId);</span>
+    }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getOrCreateBadge(</span>
+        string memory badgeName,
+        string memory criteria,
+        string memory badgeClassURI,
+        CategoryManager.Category category,
+        CategoryManager.SubCategory subCategory
+    ) internal returns (address) {
+<span class="cstat-no" title="statement not covered" >        address[] memory badgeContracts = profileManager.getOpenBadgeContracts();</span>
+        
+<span class="cstat-no" title="statement not covered" >        for (uint i = 0; i &lt; badgeContracts.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (keccak256(abi.encodePacked(OpenBadge(badgeContracts[i]).name())) == keccak256(abi.encodePacked(badgeName))) {</span>
+<span class="cstat-no" title="statement not covered" >                return badgeContracts[i];</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return profileManager.addBadge(badgeName, criteria, badgeClassURI);</span>
+    }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getUserExperiences(address userAddress) public view returns (Experience[] memory) {</span>
+<span class="cstat-no" title="statement not covered" >        uint[] storage expIds = userExperiences[userAddress];</span>
+<span class="cstat-no" title="statement not covered" >        Experience[] memory userExp = new Experience[](expIds.length);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (uint i = 0; i &lt; expIds.length; i++) {</span>
+            userExp[i] = experiences[expIds[i]];
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return userExp;</span>
+    }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getAllExperiences() public view returns (Experience[] memory) {</span>
+<span class="cstat-no" title="statement not covered" >        return experiences;</span>
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 12 2024 11:24:35 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

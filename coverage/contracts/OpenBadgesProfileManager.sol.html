@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/OpenBadgesProfileManager.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> OpenBadgesProfileManager.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">62.16% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>23/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>26/50</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.68% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>14/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70.83% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>34/48</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+&nbsp;
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "./OpenBadge.sol";
+import "./CategoryManager.sol";
+import "hardhat/console.sol";
+&nbsp;
+contract OpenBadgesProfileManager {
+&nbsp;
+    struct Profile {
+        address ethAddress;
+        string kind;
+        string didProfileURL;
+        address[] openBadgesReceived;
+    }
+&nbsp;
+    struct Organisation {
+        address ethAddress;
+        string kind;
+        string didProfileURL;
+        address[] openBadgeContracts;
+        address[] members;
+    }
+&nbsp;
+    mapping(address =&gt; Profile) private _profiles;
+    mapping(address =&gt; Organisation) private _organisations;
+&nbsp;
+    address[] private profileAddresses;
+    address[] private organisationAddresses;
+    uint256 private _numberOfProfiles;
+    uint256 private _numberOfOrganisations;
+&nbsp;
+    address private immutable adminOwner;
+&nbsp;
+    event OpenbadgeDeployed(address indexed badgeAddress, string indexed badgeName);
+&nbsp;
+    modifier onlyInTheProfileList() {
+        require(
+            _profiles[msg.sender].ethAddress != address(0),
+            "Profile does not exist"
+        );
+        _;
+    }
+&nbsp;
+    modifier onlyOrganisations() {
+        require(
+            keccak256(abi.encodePacked(_profiles[msg.sender].kind)) == keccak256(abi.encodePacked("university")) ||
+                keccak256(abi.encodePacked(_profiles[msg.sender].kind)) == keccak256(abi.encodePacked("company")) ||
+<span class="branch-1 cbranch-no" title="branch not covered" >                keccak256(abi.encodePacked(_profiles[msg.sender].kind)) == keccak256(abi.encodePacked("organisation"))</span>,
+            "Only organisations can call this func"
+        );
+        _;
+    }
+&nbsp;
+    constructor() {
+        adminOwner = msg.sender;
+        _numberOfProfiles = 0;
+        _numberOfOrganisations = 0;
+    }
+&nbsp;
+    function getOwner() public view returns (address) {
+        return adminOwner;
+    }
+&nbsp;
+    function getAllProfiles() public view returns (Profile[] memory) {
+        Profile[] memory profileList = new Profile[](_numberOfProfiles);
+&nbsp;
+        for (uint i = 0; i &lt; _numberOfProfiles; i++) {
+            profileList[i] = _profiles[profileAddresses[i]];
+        }
+        return profileList;
+    }
+&nbsp;
+    function getAllProfileAdresses() public view returns (address[] memory) {
+        return profileAddresses;
+    }
+&nbsp;
+    function getAllOrganisations() public view returns (Organisation[] memory) {
+        Organisation[] memory organisationList = new Organisation[](_numberOfOrganisations);
+&nbsp;
+        for (uint i = 0; i &lt; _numberOfOrganisations; i++) {
+            organisationList[i] = _organisations[organisationAddresses[i]];
+        }
+        return organisationList;
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getAllOrganisationAddresses() public view returns (address[] memory) {</span>
+<span class="cstat-no" title="statement not covered" >        return organisationAddresses;</span>
+    }
+&nbsp;
+    function createProfile(
+        string memory didProfileURL,
+        string memory kind
+    ) public {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+            _profiles[msg.sender].ethAddress == address(0),
+            "Profile already exists"
+        );
+        _profiles[msg.sender] = Profile(msg.sender, kind, didProfileURL, new address[](0));
+        profileAddresses.push(msg.sender);
+        _numberOfProfiles++;
+&nbsp;
+        if (isOrganisation(kind)) {
+            _organisations[msg.sender] = Organisation(msg.sender, kind, didProfileURL, new address[](0), new address[](0));
+            organisationAddresses.push(msg.sender);
+            _numberOfOrganisations++;
+        }
+    }
+&nbsp;
+    function addMemberToOrganisation(
+        address profile
+    ) public <span class="missing-if-branch" title="else path not taken" >E</span>onlyInTheProfileList onlyOrganisations {
+        _organisations[msg.sender].members.push(profile);
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getOrCreateBadge(</span>
+        string memory badgeName,
+        string memory criteria,
+        string memory badgeClassURI,
+        CategoryManager.Category category,
+        CategoryManager.SubCategory subCategory
+    ) public returns (address) {
+<span class="cstat-no" title="statement not covered" >        address[] memory badgeContracts = getOpenBadgeContracts();</span>
+        
+<span class="cstat-no" title="statement not covered" >        for (uint i = 0; i &lt; badgeContracts.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (keccak256(abi.encodePacked(OpenBadge(badgeContracts[i]).name())) == keccak256(abi.encodePacked(badgeName))) {</span>
+<span class="cstat-no" title="statement not covered" >                return badgeContracts[i];</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return addBadge(badgeName, criteria, badgeClassURI);</span>
+    }
+&nbsp;
+    function addBadge(
+        string memory badgeName,
+        string memory criteria,
+        string memory badgeClassURI
+    ) public onlyInTheProfileList onlyOrganisations returns (address) {
+        OpenBadge newBadge = new OpenBadge(badgeName, msg.sender, criteria, badgeClassURI);
+        _organisations[msg.sender].openBadgeContracts.push(address(newBadge));
+        emit OpenbadgeDeployed(address(newBadge), badgeName);
+        return address(newBadge);
+    }
+    
+<span class="fstat-no" title="function not covered" >    function deliverBadge(</span>
+        address badgeAddress,
+        address to,
+        string memory uri
+    ) public onlyInTheProfileList onlyOrganisations {
+<span class="cstat-no" title="statement not covered" >        require(</span>
+            contains(_organisations[msg.sender].openBadgeContracts, badgeAddress),
+            "Badge does not exist"
+        );
+<span class="cstat-no" title="statement not covered" >        require(</span>
+            contains(_organisations[msg.sender].members, to),
+            "Recipient is not a member of the organisation"
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        OpenBadge(badgeAddress).deliverBadge(to, uri)</span>;
+    }
+&nbsp;
+    function getOwnProfile() public view <span class="missing-if-branch" title="else path not taken" >E</span>onlyInTheProfileList returns (Profile memory) {
+        return _profiles[msg.sender];
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getDidProfileURL() public view onlyInTheProfileList returns (string memory) {</span>
+<span class="cstat-no" title="statement not covered" >        return getOwnProfile().didProfileURL;</span>
+    }
+&nbsp;
+    function getOpenBadgeContracts() public view <span class="missing-if-branch" title="else path not taken" >E</span>onlyInTheProfileList <span class="missing-if-branch" title="else path not taken" >E</span>onlyOrganisations returns (address[] memory) {
+        return _organisations[msg.sender].openBadgeContracts;
+    }
+&nbsp;
+    function getOrganisationMembers() public view <span class="missing-if-branch" title="else path not taken" >E</span>onlyInTheProfileList <span class="missing-if-branch" title="else path not taken" >E</span>onlyOrganisations returns (address[] memory) {
+        return _organisations[msg.sender].members;
+    }
+&nbsp;
+    function isOrganisation(string memory kind) private view <span class="missing-if-branch" title="else path not taken" >E</span>onlyInTheProfileList returns (bool) {
+        return keccak256(abi.encodePacked(kind)) == keccak256(abi.encodePacked("university")) ||
+                keccak256(abi.encodePacked(kind)) == keccak256(abi.encodePacked("company")) ||
+<span class="branch-1 cbranch-no" title="branch not covered" >                keccak256(abi.encodePacked(kind)) == keccak256(abi.encodePacked("organisation"))</span>;
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function contains(address[] memory array, address element) private pure returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >    for (uint i = 0; i &lt; array.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        if (array[i] == element) {</span>
+<span class="cstat-no" title="statement not covered" >            return true;</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+}
+    // -- VERIFIER LORSQU'UN ETUDIANT CREE SON PROFIL QU'IL FAIT BIEN PARTIE DE L'ORGANISATION
+    // -- AVOIR LA LISTE DE TOUTES LES ORGANISATIONS DANS LE FORM POUR QUE L'ETUDIANT OU LE SPORTIF PUISSE CHOISIR
+    // -- AVOIR LA LISTE DES MEMBRES DE L'ORGANISATION OU AUX PARTICIPANTS AUX EVENEMENTS DANS LE FORM POUR QUE L'ORGANISATION PUISSE CHOISIR A QUI DELIVRER SES BADGES
+    // -- AVOIR LA LISTE DES BADGES DISPONIBLES DANS LE FORM POUR QUE L'ORGANISATION PUISSE CHOISIR LEQUEL DELIVRER
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 12 2024 11:24:35 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

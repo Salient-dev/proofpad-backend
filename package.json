@@ -1,0 +1,26 @@
+{
+  "name": "proofpad-backend",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Léo OTSHUDI",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "chai": "^4.3.8",
+    "ethers": "^5.7.1",
+    "hardhat": "^2.19.5",
+    "hardhat-gas-reporter": "^2.2.0",
+    "solidity-coverage": "^0.8.7",
+    "web3-utils": "^4.2.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.1",
+    "dotenv": "^16.4.5",
+    "mocha": "^10.2.0"
+  }
+}
