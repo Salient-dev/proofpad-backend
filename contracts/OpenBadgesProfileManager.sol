@@ -111,55 +111,47 @@ contract OpenBadgesProfileManager {
 
     function addMemberToOrganisation(
         address profile
-    ) public onlyInTheProfileList onlyOrganisations {
+    ) public onlyInTheProfileList {
         _organisations[msg.sender].members.push(profile);
     }
 
-    function getOrCreateBadge(
-        string memory badgeName,
-        string memory criteria,
-        string memory badgeClassURI,
-        CategoryManager.Category category,
-        CategoryManager.SubCategory subCategory
-    ) public returns (address) {
-        address[] memory badgeContracts = getOpenBadgeContracts();
+    function addReceivedOpenBadge(
+        address openBadgeContract,
+        address profile
+    ) public onlyOrganisations() {
+        _profiles[profile].openBadgesReceived.push(openBadgeContract);
+    }
+
+    // function getOrCreateBadge(
+    //     string memory badgeName,
+    //     string memory criteria,
+    //     string memory badgeClassURI,
+    //     CategoryManager.Category category,
+    //     CategoryManager.SubCategory subCategory
+    // ) public returns (address) {
+    //     address[] memory badgeContracts = getOpenBadgeContracts();
         
-        for (uint i = 0; i < badgeContracts.length; i++) {
-            if (keccak256(abi.encodePacked(OpenBadge(badgeContracts[i]).name())) == keccak256(abi.encodePacked(badgeName))) {
-                return badgeContracts[i];
-            }
-        }
+    //     for (uint i = 0; i < badgeContracts.length; i++) {
+    //         if (keccak256(abi.encodePacked(OpenBadge(badgeContracts[i]).name())) == keccak256(abi.encodePacked(badgeName))) {
+    //             return badgeContracts[i];
+    //         }
+    //     }
 
-        return addBadge(badgeName, criteria, badgeClassURI);
-    }
+    //     return addBadge(badgeName, criteria, badgeClassURI);
+    // }
 
-    function addBadge(
-        string memory badgeName,
-        string memory criteria,
-        string memory badgeClassURI
-    ) public onlyInTheProfileList onlyOrganisations returns (address) {
-        OpenBadge newBadge = new OpenBadge(badgeName, msg.sender, criteria, badgeClassURI);
-        _organisations[msg.sender].openBadgeContracts.push(address(newBadge));
-        emit OpenbadgeDeployed(address(newBadge), badgeName);
-        return address(newBadge);
-    }
+    // function addBadge(
+    //     string memory badgeName,
+    //     string memory criteria,
+    //     string memory badgeClassURI
+    // ) public onlyInTheProfileList onlyOrganisations returns (address) {
+    //     OpenBadge newBadge = new OpenBadge(badgeName, msg.sender, criteria, badgeClassURI);
+    //     _organisations[msg.sender].openBadgeContracts.push(address(newBadge));
+    //     emit OpenbadgeDeployed(address(newBadge), badgeName);
+    //     return address(newBadge);
+    // }
     
-    function deliverBadge(
-        address badgeAddress,
-        address to,
-        string memory uri
-    ) public onlyInTheProfileList onlyOrganisations {
-        require(
-            contains(_organisations[msg.sender].openBadgeContracts, badgeAddress),
-            "Badge does not exist"
-        );
-        require(
-            contains(_organisations[msg.sender].members, to),
-            "Recipient is not a member of the organisation"
-        );
 
-        OpenBadge(badgeAddress).deliverBadge(to, uri);
-    }
 
     function getOwnProfile() public view onlyInTheProfileList returns (Profile memory) {
         return _profiles[msg.sender];
@@ -169,11 +161,11 @@ contract OpenBadgesProfileManager {
         return getOwnProfile().didProfileURL;
     }
 
-    function getOpenBadgeContracts() public view onlyInTheProfileList onlyOrganisations returns (address[] memory) {
+    function getOpenBadgeContracts() public view onlyInTheProfileList returns (address[] memory) {
         return _organisations[msg.sender].openBadgeContracts;
     }
 
-    function getOrganisationMembers() public view onlyInTheProfileList onlyOrganisations returns (address[] memory) {
+    function getOrganisationMembers() public view onlyInTheProfileList returns (address[] memory) {
         return _organisations[msg.sender].members;
     }
 

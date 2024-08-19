@@ -20,7 +20,7 @@ contract CompanyManager is Ownable {
 
     event CompanySubmitted(address indexed companyAddress, string name);
     event CompanyVerified(address indexed companyAddress);
-    event NFTContractAdded(address indexed companyAddress, address nftContractAddress);
+    event NFTContractAdded(address indexed companyAddress, string badgeName, string badgeClassURI, address nftContractAddress);
 
     constructor() Ownable(msg.sender) {}
 
@@ -61,11 +61,11 @@ contract CompanyManager is Ownable {
     }
 
 
-    function addNftContract(address companyAddress, address nftContractAddress) external {
+    function addNftContract(address companyAddress, address nftContractAddress, string memory badgeName, string memory badgeClassURI) external {
         require(companies[companyAddress].ethAddress != address(0), "Company does not exist");
 
         companies[companyAddress].nftContracts.push(nftContractAddress);
-        emit NFTContractAdded(companyAddress, nftContractAddress);
+        //emit NFTContractAdded(companyAddress, badgeName, badgeClassURI, nftContractAddress);
     }
 
     function getAllCompanies() public view returns (Company[] memory) {

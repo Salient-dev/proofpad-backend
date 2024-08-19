@@ -23,9 +23,11 @@ contract ExperienceManager is Ownable {
     CompanyManager private companyManager;
     CategoryManager private categoryManager;
     OpenBadgesProfileManager private profileManager;
+    // OpenBadge private
 
     event ExperienceSubmitted(address indexed userAddress, uint experienceId);
     event ExperienceValidated(address indexed validatorAddress, uint experienceId);
+    event BadgeClassCreated(address indexed badgeContract, string badgeName, string badgeClassURI, address indexed companyAddress);
 
     modifier onlyVerifiedCompany() {
         require(companyManager.getCompany(msg.sender).status == CompanyManager.CompanyStatus.Verified, "Company not verified");
@@ -70,60 +72,66 @@ contract ExperienceManager is Ownable {
         emit ExperienceSubmitted(msg.sender, experienceId);
     }
 
-    function validateExperience(uint experienceId) public {
+    // function validateExperience(uint experienceId) public {
+    //     Experience storage exp = experiences[experienceId];
+    //     require(exp.companyAddress == msg.sender, "Only the concerned company can validate experience");
+    //     require(companyManager.getCompany(msg.sender).status == CompanyManager.CompanyStatus.Verified, "Company not verified");
+
+
+
+    //     exp.validated = true;
+    //     // Create a badge for the validated experience
+    //     profileManager.getOrCreateBadge(
+    //         exp.description,
+    //         "Criteria for the badge",
+    //         "URI for badge class",
+    //         exp.category,
+    //         exp.subCategory
+    //     );
+    //     emit ExperienceValidated(msg.sender, experienceId);
+    // }
+
+    function validateExperienceForExistingBadge(uint experienceId, address nftContract, string memory newBadgeUri) public onlyVerifiedCompany {
         Experience storage exp = experiences[experienceId];
         require(exp.companyAddress == msg.sender, "Only the concerned company can validate experience");
-        require(companyManager.getCompany(msg.sender).status == CompanyManager.CompanyStatus.Verified, "Company not verified");
 
-
-
-        exp.validated = true;
-        // Create a badge for the validated experience
-        profileManager.getOrCreateBadge(
-            exp.description,
-            "Criteria for the badge",
-            "URI for badge class",
-            exp.category,
-            exp.subCategory
-        );
-        emit ExperienceValidated(msg.sender, experienceId);
-    }
-
-    function validateExperienceForExistingBadge(uint experienceId, address nftContract, string newBadgeUri) public onlyVerifiedCompany {
-        Experience storage exp = experiences[experienceId];
-        require(exp.companyAddress == msg.sender, "Only the concerned company can validate experience");
-
-        profileManager.deliverBadge(nftContract, exp.userAddress, newBadgeUri);
+        //deliverBadge(nftContract, exp.userAddress, newBadgeUri);
         exp.validated = true;
     }
 
-    function validateExperienceForNonExistingBadge(uint experienceId, string badgeName, string criteria, string badgeClassURI, CategoryManager.Category category, CategoryManager.SubCategory subCategory) public {
+    function validateExperienceForNonExistingBadge(uint experienceId, string memory badgeName, string memory criteria, string memory badgeClassURI, CategoryManager.Category category, CategoryManager.SubCategory subCategory) public {
         Experience storage exp = experiences[experienceId];
         require(exp.companyAddress == msg.sender, "Only the concerned company can validate experience");
         require(companyManager.getCompany(msg.sender).status == CompanyManager.CompanyStatus.Verified, "Company not verified");
 
         address nftContact = createBadgeClass(badgeName, criteria, badgeClassURI, category, subCategory);
-        
     }
 
+    // function deliverBadge(
+    //     address badgeAddress,
+    //     address to,
+    //     string memory uri
+    // ) public {
+    //     OpenBadge(badgeAddress).deliverBadge(to, uri);
+    // }
 
-    function getOrCreateBadge(
-        string memory badgeName,
-        string memory criteria,
-        string memory badgeClassURI,
-        CategoryManager.Category category,
-        CategoryManager.SubCategory subCategory
-    ) internal returns (address) {
-        address[] memory badgeContracts = profileManager.getOpenBadgeContracts();
+    // function getOrCreateBadge(
+    //     string memory badgeName,
+    //     string memory criteria,
+    //     string memory badgeClassURI,
+    //     CategoryManager.Category category,
+    //     CategoryManager.SubCategory subCategory
+    // ) internal returns (address) {
+    //     address[] memory badgeContracts = profileManager.getOpenBadgeContracts();
         
-        for (uint i = 0; i < badgeContracts.length; i++) {
-            if (keccak256(abi.encodePacked(OpenBadge(badgeContracts[i]).name())) == keccak256(abi.encodePacked(badgeName))) {
-                return badgeContracts[i];
-            }
-        }
+    //     for (uint i = 0; i < badgeContracts.length; i++) {
+    //         if (keccak256(abi.encodePacked(OpenBadge(badgeContracts[i]).name())) == keccak256(abi.encodePacked(badgeName))) {
+    //             return badgeContracts[i];
+    //         }
+    //     }
 
-        return profileManager.addBadge(badgeName, criteria, badgeClassURI);
-    }
+    //     return profileManager.addBadge(badgeName, criteria, badgeClassURI);
+    // }
 
 
     /**
@@ -142,8 +150,9 @@ contract ExperienceManager is Ownable {
         CategoryManager.SubCategory subCategory
     ) public returns (address) { 
         OpenBadge newBadge = new OpenBadge(badgeName, msg.sender, criteria, badgeClassURI, category, subCategory);
-        companyManager.addNftContract(msg.sender, address(newBadge));
+        companyManager.addNftContract(msg.sender, address(newBadge), badgeName, badgeClassURI);
 
+        emit BadgeClassCreated(address(newBadge), badgeName, badgeClassURI, msg.sender);
         return address(newBadge);
     }
 
